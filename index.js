@@ -40,3 +40,15 @@ const connection = mysql.createConnection({
       console.log(e);
     }
   };
+
+  const selections = async (userChoice) => {
+   const choice = userChoice === 'View all employees?' ? viewEmployee()
+    : userChoice === 'View all employee roles?' ? viewRole()
+    : userChoice === 'View all departments?' ? viewDepartment()
+    : userChoice === 'Add employee?' ? addEmployee()
+    : userChoice === 'Add role?' ? addRole()
+    : userChoice === 'Add department?' ? addDepartment()
+    : userChoice === 'Update employee role?' ? updateEmployeeRole()
+    : userChoice === 'Exit?' ? connection.end()
+    : console.log('Exiting application')
+  }
