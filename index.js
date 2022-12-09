@@ -49,6 +49,35 @@ const connection = mysql.createConnection({
     : userChoice === 'Add role?' ? addRole()
     : userChoice === 'Add department?' ? addDepartment()
     : userChoice === 'Update employee role?' ? updateEmployeeRole()
-    : userChoice === 'Exit?' ? connection.end()
-    : console.log('Exiting application')
-  }
+    : connection.end().console.log('Exiting application')
+  };
+
+  const viewEmployee = () => {
+    const query = `SELECT * FROM employees`;
+    connection.query(query, (err, employees) => {
+      if (err) throw err;
+      console.table(employees);
+      initTracker();
+  
+    });
+  };
+
+  const viewRole = () => {
+    const query = `SELECT * FROM role`;
+    connection.query(query, (err, role) => {
+      if (err) throw err;
+      console.table(role);
+      initTracker();
+  
+    });
+  };
+
+  const viewDepartment = () => {
+    const query = `SELECT * FROM departments`;
+    connection.query(query, (err, departments) => {
+      if (err) throw err;
+      console.table(departments);
+      initTracker();
+  
+    });
+  };
